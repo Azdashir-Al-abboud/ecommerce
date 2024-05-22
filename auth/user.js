@@ -41,7 +41,7 @@ router.post("/signup", (req, res) => {
   
 router.get("/get", (req, res) => {
   var query =
-    "select * from users";
+    "select * from users where id = 1";
   connection.query(query, (err, results) => {
     if (!err) {
       return res.status(200).json(results);
