@@ -8,6 +8,9 @@
     "start": "nodemon server.js"
   },
   "author": "",
+  "engines": {
+    "node": "20.11.1"
+  },
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
