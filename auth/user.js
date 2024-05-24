@@ -40,9 +40,10 @@ router.post("/signup", (req, res) => {
 
   
 router.get("/get", (req, res) => {
+  let user = req.body
   var query =
-    "select * from users";
-  connection.query(query, (err, results) => {
+    "select * from users where users_id=1";
+  connection.query(query,(err, results) => {
     if (!err) {
       return res.status(200).json(results);
     } else {
