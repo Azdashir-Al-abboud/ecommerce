@@ -7,6 +7,7 @@ require("dotenv").config();
 
 router.post("/signup", (req, res) => {
     const user = req.body;
+    console.log("============");
     let query = "select * from users where users_email=? or users_phone=?";
   
     connection.query(query, [user.email,user.phone], (err, results) => {
@@ -42,7 +43,7 @@ router.post("/signup", (req, res) => {
 router.get("/get", (req, res) => {
   let user = req.body
   var query =
-    "select * from users where users_id=1";
+    "select * from users";
   connection.query(query,(err, results) => {
     if (!err) {
       return res.status(200).json(results);
