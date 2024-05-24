@@ -13,7 +13,7 @@ router.post("/signup", (req, res) => {
       if (!err) {
         if (results.length <= 0) {
           query =
-            "insert into users(users_name,users_password,users_email,users_phone,users_verify) values(?,?,?,?,'0')";
+            "insert into users(users_name,users_password,users_email,users_phone,users_verifycode) values(?,?,?,?,'0')";
             console.log(user);
           connection.query(
             query,
@@ -41,7 +41,7 @@ router.post("/signup", (req, res) => {
   
 router.get("/get", (req, res) => {
   var query =
-    "select * from users where id=1";
+    "select * from users";
   connection.query(query, (err, results) => {
     if (!err) {
       return res.status(200).json(results);
