@@ -2,6 +2,7 @@ const express = require("express");
 const { query } = require("../connection");
 const connection = require("../connection");
 const bcrypt = require("bcrypt");
+const sendVerificationEmail = require("../functions/sendemail");
 const router = express.Router();
 
 require("dotenv").config();
@@ -19,7 +20,7 @@ router.post("/signup",async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(user.password, salt);
         console.log(hash);
-        connection.query(
+     connection.query(
           query,
           [user.username, hash, user.email, user.phone, user.verifyCode],
           (err, results) => {
@@ -32,6 +33,11 @@ router.post("/signup",async (req, res) => {
             }
           }
         );
+        await sendVerificationEmail({
+          to: user.email,
+          subject: "Verify Code Ecommerce",
+          html: `<b>Hey there! </b><br> Your Verify Code: ${verifyCode}<br/>`,
+        })
       } else {
         return res
           .status(400)
