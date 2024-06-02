@@ -29,7 +29,7 @@ router.post("/signup",async (req, res) => {
                 .status(200)
                 .json({ message: "Successfully Registered" });
             } else {
-              return res.status(500).json(err);
+              // return res.status(500).json(err);
             }
           }
         );
