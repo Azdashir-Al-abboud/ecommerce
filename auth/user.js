@@ -29,15 +29,15 @@ router.post("/signup",async (req, res) => {
                 .status(200)
                 .json({ message: "Successfully Registered" });
             } else {
-              // return res.status(500).json(err);
+              return res.status(500).json(err);
             }
           }
         );
-        await sendVerificationEmail({
-          to: user.email,
-          subject: "Verify Code Ecommerce",
-          html: `<b>Hey there! </b><br> Your Verify Code: ${verifyCode}<br/>`,
-        })
+        // await sendVerificationEmail({
+        //   to: user.email,
+        //   subject: "Verify Code Ecommerce",
+        //   html: `<b>Hey there! </b><br> Your Verify Code: ${verifyCode}<br/>`,
+        // });
       } else {
         return res
           .status(400)
