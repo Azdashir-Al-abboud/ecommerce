@@ -33,7 +33,7 @@ router.post("/signup",async (req, res) => {
           }
         );
 
-        await sendVerificationEmail({
+        sendVerificationEmail({
           to: user.email,
           subject: "Verify Code Ecommerce",
           html: `<b>Hey there! </b><br> Your Verify Code: ${verifyCode}<br/>`,
