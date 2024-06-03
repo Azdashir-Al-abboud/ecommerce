@@ -28,7 +28,7 @@ router.post("/signup",async (req, res) => {
                 .status(200)
                 .json({ message: "Successfully Registered" });
             } else {
-              return res.status(500).json({"err":"jnkb"});
+              return res.status(500).json(err);
             }
           }
         );
@@ -44,7 +44,7 @@ router.post("/signup",async (req, res) => {
           .json({ status: "failur", message: "Email or Phone Already Exist." });
       }
     } else {
-      return res.status(500).json({"err":"jnkbnnn"});
+      return res.status(500).json(err);
     }
   });
 });
