@@ -44,7 +44,7 @@ router.post("/signup",async (req, res) => {
           .json({ status: "failur", message: "Email or Phone Already Exist." });
       }
     } else {
-      return res.status(500).json(err);
+      return res.status(500).json({"err":"jnkbnnn"});
     }
   });
 });
