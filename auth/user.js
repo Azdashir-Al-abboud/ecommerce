@@ -22,7 +22,7 @@ router.post("/signup",async (req, res) => {
         console.log(hash);
      connection.query(
           query,
-          [user.username, hash, user.email, user.phone, user.verifyCode],
+          [user.username, hash, user.email, user.phone, verifyCode],
           (err, results) => {
             if (!err) {
               return res
