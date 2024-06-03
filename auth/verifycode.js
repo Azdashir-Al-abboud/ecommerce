@@ -17,20 +17,16 @@ router.post("/verifycode", (req, res) => {
           query = "update users set users_approve='1' where users_email=?";
           connection.query(query, [user.email], (err, results) => {
             if (!err) {
-              return res
-                .status(200)
-                .json({ message: "Success" });
+              return res.status(200).json({ message: "Success" });
             } else {
               return res.status(500).json(err);
             }
           });
         } else {
-          return res
-            .status(400)
-            .json({
-              status: "failur",
-              message: "VerifyCode not correct",
-            });
+          return res.status(400).json({
+            status: "failur",
+            message: "VerifyCode not correct",
+          });
         }
       } else {
         return res.status(500).json(err);
@@ -38,3 +34,5 @@ router.post("/verifycode", (req, res) => {
     }
   );
 });
+
+module.exports = router;
