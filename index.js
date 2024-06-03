@@ -3,6 +3,7 @@ const cors = require("cors");
 const connection = require("./connection");
 require("dotenv").config();
 const userAuth = require("./auth/user");
+const userverifycode = require("./auth/verifycode");
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(express.static('public'));
 
 
 app.use("/user", userAuth);
+app.use("/verifycode", userverifycode);
 
 const PORT = process.env.PORT || 5000
 
