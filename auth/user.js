@@ -22,8 +22,13 @@ router.post("/signup",async (req, res) => {
      connection.query(
           query,
           [user.username, hash, user.email, user.phone, verifyCode],
-          (err, results) => {
+          async (err, results) => {
             if (!err) {
+              await sendVerificationEmail({
+                to: user.email,
+                subject: "Verify Code Ecommerce",
+                html: `<b>Hey there! </b><br> Your Verify Code: ${verifyCode}<br/>`,
+              });
               return res
                 .status(200)
                 .json({ message: "Successfully Registered" });
@@ -32,12 +37,6 @@ router.post("/signup",async (req, res) => {
             }
           }
         );
-
-        await sendVerificationEmail({
-          to: user.email,
-          subject: "Verify Code Ecommerce",
-          html: `<b>Hey there! </b><br> Your Verify Code: ${verifyCode}<br/>`,
-        });
       } else {
         return res
           .status(400)
