@@ -19,7 +19,6 @@ router.post("/signup",async (req, res) => {
           "insert into users(users_name,users_password,users_email,users_phone,users_verifycode) values(?,?,?,?,?)";
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(user.password, salt);
-        console.log(hash);
      connection.query(
           query,
           [user.username, hash, user.email, user.phone, verifyCode],
@@ -33,7 +32,7 @@ router.post("/signup",async (req, res) => {
             }
           }
         );
-        console.log("ddddddddddddd");
+
         await sendVerificationEmail({
           to: user.email,
           subject: "Verify Code Ecommerce",
