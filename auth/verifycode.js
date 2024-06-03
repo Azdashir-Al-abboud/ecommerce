@@ -9,7 +9,7 @@ router.post("/verifycode", (req, res) => {
   let query = "select * from users where users_email=? and users_verifycode=?";
   connection.query(
     query,
-    [user.email, user.verifyCode],
+    [user.email, user.verifycode],
     (err, results) => {
       if (!err) {
         if (results.length > 0) {
