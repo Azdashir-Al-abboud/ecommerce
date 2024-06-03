@@ -33,11 +33,11 @@ router.post("/signup",async (req, res) => {
           }
         );
 
-        sendVerificationEmail({
-          to: user.email,
-          subject: "Verify Code Ecommerce",
-          html: `<b>Hey there! </b><br> Your Verify Code: ${verifyCode}<br/>`,
-        });
+        // await sendVerificationEmail({
+        //   to: user.email,
+        //   subject: "Verify Code Ecommerce",
+        //   html: `<b>Hey there! </b><br> Your Verify Code: ${verifyCode}<br/>`,
+        // });
       } else {
         return res
           .status(400)
