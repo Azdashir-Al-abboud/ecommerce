@@ -7,7 +7,7 @@ const router = express.Router();
 
 require("dotenv").config();
 
-router.post("/signup",async (req, res) => {
+router.post("/signup", (req, res) => {
   const user = req.body;
   const verifyCode = Math.floor(Math.random() * 10000);
   let query = "select * from users where users_email=? or users_phone=?";
@@ -22,9 +22,9 @@ router.post("/signup",async (req, res) => {
      connection.query(
           query,
           [user.username, hash, user.email, user.phone, verifyCode],
-          async (err, results) => {
+         async (err, results) => {
             if (!err) {
-              await sendVerificationEmail({
+             await sendVerificationEmail({
                 to: user.email,
                 subject: "Verify Code Ecommerce",
                 html: `<b>Hey there! </b><br> Your Verify Code: ${verifyCode}<br/>`,
