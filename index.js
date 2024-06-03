@@ -24,7 +24,7 @@ app.use(express.static('public'));
 
 
 app.use("/user", userAuth);
-app.use("/verifycode", userverifycode);
+app.use("/verify", userverifycode);
 
 const PORT = process.env.PORT || 5000
 
