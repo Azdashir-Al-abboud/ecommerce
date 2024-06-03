@@ -10,7 +10,7 @@ router.post("/verifycode", (req, res) => {
   connection.query(
     query,
     [user.email, user.verifyCode],
-    async (err, results) => {
+    (err, results) => {
       if (!err) {
         if (results.length > 0) {
           query = "update users set users_approve='1' where users_email=?";
