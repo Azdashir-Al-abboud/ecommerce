@@ -6,8 +6,7 @@ require("dotenv").config();
 
 router.post("/verifycode", (req, res) => {
   const user = req.body;
-  let query = "select * from users where users_email=? and users_verifyCode=?";
-
+  let query = "select * from users where users_email=? and users_verifycode=?";
   connection.query(
     query,
     [user.email, user.verifyCode],
