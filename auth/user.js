@@ -48,7 +48,7 @@ router.post("/signup", (req, res) => {
   });
 });
 
-router.get("/get", (req, res) => {
+router.get("/testget", (req, res) => {
   let user = req.body;
   var query = "select * from users";
   connection.query(query, (err, results) => {
