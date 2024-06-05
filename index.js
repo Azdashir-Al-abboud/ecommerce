@@ -10,7 +10,7 @@ const app = express();
 const multer = require('multer'); // =======
 const upload = multer(); // =====
 
-
+app.use(express.static('public'))
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
