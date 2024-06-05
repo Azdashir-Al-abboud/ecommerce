@@ -15,13 +15,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // for parsing application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true })); 
-    x
+app.use(express.urlencoded({ extended: true }));
 // for parsing multipart/form-data
 app.use(upload.array()); 
 app.use(express.static('public'));
 
-app.get("/", (req, res) => res.send("Express on Vercel"));
+// app.get("/", (req, res) => res.send("Express on Vercel"));
 app.use("/user", userAuth);
 app.use("/verify", userverifycode);
 
