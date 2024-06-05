@@ -10,19 +10,18 @@ const app = express();
 const multer = require('multer'); // =======
 const upload = multer(); // =====
 
-app.use(express.static('public'))
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // for parsing application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true })); 
-
+    x
 // for parsing multipart/form-data
 app.use(upload.array()); 
 app.use(express.static('public'));
 
-
+app.get("/", (req, res) => res.send("Express on Vercel"));
 app.use("/user", userAuth);
 app.use("/verify", userverifycode);
 
