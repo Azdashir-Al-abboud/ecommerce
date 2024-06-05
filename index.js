@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // for parsing multipart/form-data
 app.use(upload.array()); 
-app.use(express.static('public'));
+// app.use(express.static('public'));
 
 // app.get("/", (req, res) => res.send("Express on Vercel"));
 app.use("/user", userAuth);
@@ -27,6 +27,6 @@ app.use("/verify", userverifycode);
 const PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => {
-    console.log("Server is running....")
+    console.log("Server is running....");
 })
 // module.exports = app;
