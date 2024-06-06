@@ -1,6 +1,6 @@
 const express = require("express");
 const { query } = require("../connection");
-const connection = require("../connection");
+const pool = require("../connection");
 const bcrypt = require("bcrypt");
 const sendVerificationEmail = require("../functions/sendemail");
 const router = express.Router();
@@ -12,14 +12,14 @@ router.post("/signup", (req, res) => {
   const verifyCode = Math.floor(Math.random() * 100000);
   let query = "select * from users where users_email=? or users_phone=?";
 
-  connection.query(query, [user.email, user.phone], async (err, results) => {
+  pool.query(query, [user.email, user.phone], async (err, results) => {
     if (!err) {
       if (results.length <= 0) {
         query =
           "insert into users(users_name,users_password,users_email,users_phone,users_verifycode) values(?,?,?,?,?)";
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(user.password, salt);
-     connection.query(
+        pool.query(
           query,
           [user.username, hash, user.email, user.phone, verifyCode],
          async (err, results) => {
@@ -51,9 +51,9 @@ router.post("/signup", (req, res) => {
 router.get("/testget", (req, res) => {
   let user = req.body;
   var query = "select * from users";
-  connection.query(query, (err, results) => {
+  pool.query(query, (err, results) => {
     if (!err) {
-      return res.status(200).json(results);
+      return res.status(200).json({"status": "success","data":results });
     } else {
       return res.status(500).json(err);
     }
