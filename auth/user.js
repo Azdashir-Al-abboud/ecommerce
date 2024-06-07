@@ -58,7 +58,7 @@ router.get("/testget", (req, res) => {
       } else {
         return res
           .status(400)
-          .json({ status: "failur", message: "No data to be returned." });
+          .json({ "status": "failure", message: "No data to be returned." });
       }
       
     } else {
