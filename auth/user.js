@@ -40,7 +40,7 @@ router.post("/signup", (req, res) => {
       } else {
         return res
           .status(400)
-          .json({ status: "failur", message: "Email or Phone Already Exist." });
+          .json({ status: "Warning", message: "Email or Phone Already Exist." });
       }
     } else {
       return res.status(500).json(err);
@@ -50,15 +50,15 @@ router.post("/signup", (req, res) => {
 
 router.get("/testget", (req, res) => {
   let user = req.body;
-  var query = "select * from users where users_email=?";
-  pool.query(query,"azdashirboud@gmail.com", (err, results) => {
+  var query = "select * from users";
+  pool.query(query, (err, results) => {
     if (!err) {
       if (results.length > 0) {
         return res.status(200).json({"status": "success","data":results });
       } else {
         return res
           .status(400)
-          .json({ "status": "failure", message: "No data to be returned." });
+          .json({ "status": "Warning", message: "No data to be returned." });
       }
       
     } else {
