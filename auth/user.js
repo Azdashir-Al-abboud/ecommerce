@@ -53,7 +53,14 @@ router.get("/testget", (req, res) => {
   var query = "select * from users where users_email=?";
   pool.query(query,"azdashirboud@gmail.com", (err, results) => {
     if (!err) {
-      return res.status(200).json({"status": "success","data":results });
+      if (results.length <= 0) {
+        return res.status(200).json({"status": "success","data":results });
+      } else {
+        return res
+          .status(400)
+          .json({ status: "failur", message: "No data to be returned." });
+      }
+      
     } else {
       return res.status(500).json({"status": "failure"},err);
     }
