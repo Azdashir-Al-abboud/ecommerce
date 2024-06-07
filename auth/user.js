@@ -50,7 +50,7 @@ router.post("/signup", (req, res) => {
 
 router.get("/testget", (req, res) => {
   let user = req.body;
-  var query = "select * from users where users_email=azdashiraboud@gmail.com";
+  var query = "select * from users";
   pool.query(query, (err, results) => {
     if (!err) {
       return res.status(200).json({"status": "success","data":results });
