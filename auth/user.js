@@ -31,7 +31,7 @@ router.post("/signup", (req, res) => {
               });
               return res
                 .status(200)
-                .json({ message: "Successfully Registered" });
+                .json({status:"success", message: "Successfully Registered" });
             } else {
               return res.status(500).json(err);
             }
