@@ -50,12 +50,12 @@ router.post("/signup", (req, res) => {
 
 router.get("/testget", (req, res) => {
   let user = req.body;
-  var query = "select * from users where users_id='1'";
+  var query = "select * from users where users_id=''";
   pool.query(query, (err, results) => {
     if (!err) {
       return res.status(200).json({"status": "success","data":results });
     } else {
-      return res.status(500).json(err);
+      return res.status(500).json({"status": "failure"},err);
     }
   });
 });
