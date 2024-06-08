@@ -16,7 +16,7 @@ router.post("/verifycode", (req, res) => {
           query = "update users set users_approve='1' where users_email=?";
           connection.query(query, [user.email], (err, results) => {
             if (!err) {
-              return res.status(200).json({ message: "Success" });
+              return res.status(200).json({status:"success", message: "Verified successfully" });
             } else {
               return res.status(500).json(err);
             }
