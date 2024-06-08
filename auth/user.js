@@ -9,7 +9,7 @@ require("dotenv").config();
 
 router.post("/signup", (req, res) => {
   const user = req.body;
-  const verifyCode = Math.floor(Math.random() * 100000);
+  const verifyCode = Math.floor(10000 +Math.random() *90000 );
   let query = "select * from users where users_email=? or users_phone=?";
 
   pool.query(query, [user.email, user.phone], async (err, results) => {
