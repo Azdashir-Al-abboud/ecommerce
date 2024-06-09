@@ -66,12 +66,16 @@ router.post("/resetpassword", (req, res) => {
   let query = "update users set users_password=? where users_email=?";
   pool.query(query, [user.password, user.email], (err, results) => {
     if (!err) {
-        if (results.affectedRows == 0) {
-            return res.status(404).json({ message: "User Email does not exist" }); // 404 Not Found
-          }
-          return res.status(200).json({ status: "success", message: "User Updated Successfully" });
+      if (results.affectedRows == 0) {
+        return res.status(404).json({ message: "User Email does not exist" }); // 404 Not Found
+      }
+      return res
+        .status(200)
+        .json({ status: "success", message: "User Updated Successfully" });
     } else {
       return res.status(500).json(err);
     }
   });
 });
+
+module.exports = router;
