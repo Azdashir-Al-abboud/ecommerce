@@ -87,14 +87,14 @@ router.post("/login", (req, res) => {
 router.post("/verifycode", (req, res) => {
     const user = req.body;
     let query = "select * from users where users_email=? and users_verifycode=?";
-    connection.query(
+    pool.query(
       query,
       [user.email, user.verifycode],
       (err, results) => {
         if (!err) {
           if (results.length > 0) {
             query = "update users set users_approve='1' where users_email=?";
-            connection.query(query, [user.email], (err, results) => {
+            pool.query(query, [user.email], (err, results) => {
               if (!err) {
                 return res.status(200).json({status:"success", message: "Verified successfully" });
               } else {

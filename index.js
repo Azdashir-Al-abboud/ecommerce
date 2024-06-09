@@ -2,7 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const connection = require("./connection");
 require("dotenv").config();
-const userverifycode = require("./routes/auth");
+const authRoute = require("./routes/auth");
+const forgetPasswordRoute = require("./routes/forgetpassword");
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(upload.array());
 
 // app.get("/", (req, res) => res.send("Express on Vercel"));
 app.use("/auth", authRoute);
+app.use("/forgetpassword", forgetPasswordRoute);
 
 const PORT = process.env.PORT || 5000;
 
