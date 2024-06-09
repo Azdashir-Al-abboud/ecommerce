@@ -61,10 +61,12 @@ router.post("/verifycode", (req, res) => {
   });
 });
 
-router.post("/resetpassword", (req, res) => {
+router.post("/resetpassword", async (req, res) => {
   const user = req.body;
   let query = "update users set users_password=? where users_email=?";
-  pool.query(query, [user.password, user.email], (err, results) => {
+  const salt = await bcrypt.genSalt(10);
+        const hash = await bcrypt.hash(user.password, salt);
+  pool.query(query, [hash, user.email], (err, results) => {
     if (!err) {
       if (results.affectedRows == 0) {
         return res.status(404).json({ message: "User Email does not exist" }); // 404 Not Found
