@@ -56,7 +56,7 @@ router.post("/signup", (req, res) => {
 
 router.post("/login", (req, res) => {
   const user = req.body;
-  let query = "select * from users where users_email=?";
+  let query = "select * from users where users_email=? and users_approve='1'";
   pool.query(query, [user.email], async (err, results) => {
     if (!err) {
       if (results.length > 0) {
