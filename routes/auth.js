@@ -29,24 +29,20 @@ router.post("/signup", (req, res) => {
                 subject: "Verify Code Ecommerce",
                 html: `<b>Hey there! </b><br> Your Verify Code: ${verifyCode}<br/>`,
               });
-              return res
-                .status(200)
-                .json({
-                  status: "success",
-                  message: "Successfully Registered",
-                });
+              return res.status(200).json({
+                status: "success",
+                message: "Successfully Registered",
+              });
             } else {
               return res.status(500).json(err);
             }
           }
         );
       } else {
-        return res
-          .status(400)
-          .json({
-            status: "Warning",
-            message: "Email or Phone Already Exist.",
-          });
+        return res.status(400).json({
+          status: "Warning",
+          message: "Email or Phone Already Exist.",
+        });
       }
     } else {
       return res.status(500).json(err);
@@ -65,9 +61,11 @@ router.post("/login", (req, res) => {
           results[0].users_password
         );
         if (isValid) {
-          return res
-            .status(200)
-            .json({ status: "success", message: "Successfully Login" });
+          return res.status(200).json({
+            status: "success",
+            message: "Successfully Login",
+            data: results,
+          });
         } else {
           return res
             .status(400)
@@ -85,36 +83,32 @@ router.post("/login", (req, res) => {
 });
 
 router.post("/verifycode", (req, res) => {
-    const user = req.body;
-    let query = "select * from users where users_email=? and users_verifycode=?";
-    pool.query(
-      query,
-      [user.email, user.verifycode],
-      (err, results) => {
-        if (!err) {
-          if (results.length > 0) {
-            query = "update users set users_approve='1' where users_email=?";
-            pool.query(query, [user.email], (err, results) => {
-              if (!err) {
-                return res.status(200).json({status:"success", message: "Verified successfully" });
-              } else {
-                return res.status(500).json(err);
-              }
-            });
+  const user = req.body;
+  let query = "select * from users where users_email=? and users_verifycode=?";
+  pool.query(query, [user.email, user.verifycode], (err, results) => {
+    if (!err) {
+      if (results.length > 0) {
+        query = "update users set users_approve='1' where users_email=?";
+        pool.query(query, [user.email], (err, results) => {
+          if (!err) {
+            return res
+              .status(200)
+              .json({ status: "success", message: "Verified successfully" });
           } else {
-            return res.status(400).json({
-              status: "failur",
-              message: "VerifyCode not correct",
-            });
+            return res.status(500).json(err);
           }
-        } else {
-          return res.status(500).json(err);
-        }
+        });
+      } else {
+        return res.status(400).json({
+          status: "failur",
+          message: "VerifyCode not correct",
+        });
       }
-    );
+    } else {
+      return res.status(500).json(err);
+    }
   });
-  
-
+});
 
 router.get("/testget", (req, res) => {
   let user = req.body;
