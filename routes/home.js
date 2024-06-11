@@ -12,7 +12,7 @@ router.get("/getall", (req, res) => {
       if (!err) {
         allData['categories']=results
         console.log(allData);
-          return res.status(200).json({ status: "success", data: results });
+          return res.status(200).json({ status: "success", data: allData });
       } else {
         return res.status(500).json({ status: "failure" }, err);
       }
