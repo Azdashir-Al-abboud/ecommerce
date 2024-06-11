@@ -4,6 +4,7 @@ const connection = require("./connection");
 require("dotenv").config();
 const authRoute = require("./routes/auth");
 const forgetPasswordRoute = require("./routes/forgetpassword");
+const categories = require("./routes/category");
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(upload.array());
 // app.get("/", (req, res) => res.send("Express on Vercel"));
 app.use("/auth", authRoute);
 app.use("/forgetpassword", forgetPasswordRoute);
+app.use("/categories", categories);
 
 const PORT = process.env.PORT || 5000;
 
