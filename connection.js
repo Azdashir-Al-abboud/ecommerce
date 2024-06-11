@@ -13,12 +13,14 @@ const pool = mysql.createPool({
 });
 
 pool.getConnection((err, conn) => {
-  if (err) console.log(err);
-  console.log("Connected successfully");
+  if (!err) {
+    console.log("Connected successfully");
+  } else {
+    console.log(err);
+  }
 });
 
-module.exports = pool
-
+module.exports = pool;
 
 // var connection = mysql.createConnection({
 //   port: process.env.DB_PORT,
