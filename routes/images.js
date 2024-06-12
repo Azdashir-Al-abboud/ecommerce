@@ -4,7 +4,7 @@ const router = express.Router();
 require("dotenv").config();
 
 router.get("/categoriesimage", (req, res) => {
-  const filePath = "../upload/categories/camera.svg";
+  const filePath = "./upload/categories/camera.svg";
   fs.readFile(filePath, (err, data) => {
     if (err) {
       console.error(err);
