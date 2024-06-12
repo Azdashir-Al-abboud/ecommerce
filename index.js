@@ -6,6 +6,7 @@ const authRoute = require("./routes/auth");
 const forgetPasswordRoute = require("./routes/forgetpassword");
 const categories = require("./routes/category");
 const home = require("./routes/home");
+const image = require("./routes/images");
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use("/auth", authRoute);
 app.use("/forgetpassword", forgetPasswordRoute);
 app.use("/categories", categories);
 app.use("/home", home);
+app.use("/file", image);
 
 const PORT = process.env.PORT || 5000;
 
