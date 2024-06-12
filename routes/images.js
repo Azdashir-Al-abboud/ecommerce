@@ -8,7 +8,7 @@ router.get("/categoriesimage", (req, res) => {
   fs.readFile(filePath, (err, data) => {
     if (err) {
       console.error(err);
-      res.status(500).send("Internal server error");
+      res.status(500).send(err);
       return;
     }
     res.writeHead(200, { "Content-Type": "image/svg" });
