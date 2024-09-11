@@ -6,7 +6,7 @@ const authRoute = require("./routes/auth");
 const forgetPasswordRoute = require("./routes/forgetpassword");
 const categories = require("./routes/category");
 const home = require("./routes/home");
-const image = require("./routes/images");
+const items = require("./routes/items");
 
 const app = express();
 
@@ -24,16 +24,17 @@ app.use(upload.array());
 // app.use(express.static('public'));
 
 // app.get("/", (req, res) => res.send("Express on Vercel"));
+app.use('/static', express.static('upload'));
 app.use("/auth", authRoute);
 app.use("/forgetpassword", forgetPasswordRoute);
 app.use("/categories", categories);
 app.use("/home", home);
-app.use("/file", image);
+app.use("/items", items);
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log("Server is running....");
+  console.log(`Server is running....${PORT}`);
 });
 
 module.exports = app;

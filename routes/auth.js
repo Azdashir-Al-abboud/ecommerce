@@ -8,6 +8,7 @@ const router = express.Router();
 require("dotenv").config();
 
 router.post("/signup", (req, res) => {
+  console.log("===============");
   const user = req.body;
   const verifyCode = Math.floor(10000 + Math.random() * 90000);
   let query = "select * from users where users_email=? or users_phone=?";
