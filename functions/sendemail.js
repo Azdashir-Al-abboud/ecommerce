@@ -13,7 +13,8 @@ const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   auth: {
     user: "azdashir.it.0.1@gmail.com",
-    pass: "xwlf xlxl ftkq osfj",
+    // pass: "xwlf xlxl ftkq osfj",
+    pass: "zgwp ngye nusc veer ",
   },
   secure: true, // upgrades later with STARTTLS -- change this based on the PORT
 });
